@@ -1,0 +1,224 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Web</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  
+  </head>
+  <body>
+    <!-- nav start -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="/src/assets/image/dumbways.png" alt="ini logo" style="width: 35px;"/>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link navbar text-light " href="/" >Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar text-light " href="/AddmyProject">Add Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar text-light " href="/testimonial">Testimonial</a>
+          </li>
+        </ul>
+        <div class="d-flex ms-auto">
+          {{#if isLogin}}
+            <div class="user-info text-center">
+              <p class="mb-1 navbar text-light">{{user.name}}</p>
+              <div class="button-group">
+                <a href="/logout" class="d-inline">
+                  <button class="btn btn-gray btn-spacing navbar text-light">Logout</button>
+                </a>
+              </div>
+            </div>
+          {{else}}
+            <a href="/login" class="btn btn-gray btn-spacing navbar text-light">Login</a>
+            <a href="/register" class="btn btn-gray btn-spacing navbar text-light">Register</a>
+            <a href="/contact" class="btn btn-gray btn-spacing navbar text-light">Contact Me</a>
+          {{/if}}
+        </div>
+      </div>
+    </nav>
+    <!-- nav end -->
+
+    <!-- project content start -->
+    <div class="container mt-5">
+      <div class="profile-section row">
+        <div class="col-md-7 profile-text" style="margin-left: 40px;">
+          <h1 class="h1-footer">Welcome to my hut!</h1>
+          <p>
+            Hi im Fabian Farrel, im 18 years old and it's a pleasure to meet you all. I come from BangkaBelitung in the town PangkalPinang, 
+              and I'm very excited to be here today on BATCH 56 of DumbWays. My interests include in Design, Coding, Economy
+              and i have work freelance for eastons for a short period of time. I look forward to engaging with you all and learning together.
+          </p>
+          
+          <div class="buttons mt-3">
+            <a href="/contact" class="btn btn-dark btn-lg ">Contact</a>
+            <a href="#" class="download-cv btn-lg"style="color: black;" onclick="window.location.href='/src/assets/FABIAN FARREL CV.pdf'">
+              Download CV
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-download"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"
+                />
+                <path
+                  d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"
+                />
+              </svg>
+            </a>
+          </div>
+           <h1 class="h1-footer mt-4">Found me on</h1>
+          <div class="mt-3">
+            <a
+              href="https://www.linkedin.com/in/fabian-farrel-127370317/"
+              class="btn btn-link "
+            ><i class="fab fa-linkedin fa-2x" style="color: black;"></i></a>
+            <a
+              href="https://www.instagram.com/fbnfarrel/"
+              class="btn btn-link"
+            ><i class="fab fa-instagram fa-2x " style="color: black;" ></i></a>
+            
+            <a
+              href="https://github.com/FabianFarrel"
+              class="btn btn-link"
+            ><i class="fab fa-github fa-2x" style="color: black;"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4 profile-image">
+          <div class="card card-custom" style="width: 300px;  ">
+            <img
+              src="/src/assets/image/fabian.jpg"
+              alt="profile"
+              
+            />
+            <div class="card-body text-center">
+              <h2 class="card-title">Fabian Farrel</h2>
+              <p class="card-text">Student at Dumbways</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{! one to project }}
+    <hr class="line" />
+    <div class="text-center">
+      <h1>My Project</h1>
+    </div>
+    <div class="container mt-5">
+      <div class="row">
+        {{#each projects}}
+          <div class="col-md-4 ">
+            <div class="card">
+              <img
+                src="{{this.image}}"
+                class="card-img-top"
+                alt="Project Image"
+              />
+              <div class="card-body" style="color: black;">
+                <h5 class="card-title"><a style="color: #1e1ea9;" href="/detailProject/{{@index}} ">
+                    {{name}}
+                  </a></h5>
+                <p class="card-text">Duration:
+                  {{duration start_date end_date}}</p>
+                <p class="card-text"> {{descriptions}} </p>
+                <div class="icon-container mt-3">
+                  {{#each technologies}}
+                    {{#ifCond this "Node Js"}}
+                      <i class="fa-brands fa-node fa-2x custom-size"></i>
+                    {{/ifCond}}
+                    {{#ifCond this "TypeScript"}}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        x="0px"
+                        y="0px"
+                        width="25"
+                        height="35"
+                        viewBox="0 10 50 50"
+                        class="custom-size"
+                        
+                      >
+                        <path
+                          d="M 5 4 A 1.0001 1.0001 0 0 0 4 5 L 4 45 A 1.0001 1.0001 0 0 0 5 46 L 45 46 A 1.0001 1.0001 0 0 0 46 45 L 46 5 A 1.0001 1.0001 0 0 0 45 4 L 5 4 z M 6 6 L 44 6 L 44 44 L 6 44 L 6 6 z M 15 23 L 15 26.445312 L 20 26.445312 L 20 42 L 24 42 L 24 26.445312 L 29 26.445312 L 29 23 L 15 23 z M 36.691406 23.009766 C 33.576782 22.997369 30.017578 23.941219 30.017578 28.324219 C 30.017578 34.054219 37.738281 34.055625 37.738281 36.640625 C 37.738281 36.885625 37.842187 38.666016 35.117188 38.666016 C 32.392187 38.666016 30.121094 36.953125 30.121094 36.953125 L 30.121094 41.111328 C 30.121094 41.111328 42.001953 44.954062 42.001953 36.289062 C 42.000953 30.664063 34.208984 30.945391 34.208984 28.150391 C 34.208984 27.067391 34.978375 26.054687 37.109375 26.054688 C 39.240375 26.054688 41.126953 27.3125 41.126953 27.3125 L 41.267578 23.607422 C 41.267578 23.607422 39.113892 23.019408 36.691406 23.009766 z"
+                        ></path>
+                      </svg>
+                    {{/ifCond}}
+                    {{#ifCond this "React Js"}}
+                      <i class="fa-brands fa-react fa-2x custom-size"></i>
+                    {{/ifCond}}
+                    {{#ifCond this "Next Js"}}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        x="0px"
+                        y="0px"
+                        width="25"
+                        height="35"
+                        viewBox="0 0 49 49"
+                        class="custom-size"
+                        
+                      >
+                        <path
+                          fill="#212121"
+                          d="M18.974,31.5c0,0.828-0.671,1.5-1.5,1.5s-1.5-0.672-1.5-1.5v-14c0-0.653,0.423-1.231,1.045-1.43 c0.625-0.198,1.302,0.03,1.679,0.563l16.777,23.704C40.617,36.709,44,30.735,44,24c0-11-9-20-20-20S4,13,4,24s9,20,20,20 c3.192,0,6.206-0.777,8.89-2.122L18.974,22.216V31.5z M28.974,16.5c0-0.828,0.671-1.5,1.5-1.5s1.5,0.672,1.5,1.5v13.84l-3-4.227 V16.5z"
+                        ></path>
+                      </svg>
+                    {{/ifCond}}
+                  {{/each}}
+                </div>
+                <div class="d-flex justify-content-between">
+                  <a href="/editData/{{id}}" class="w-100 mr-2">
+                    <button class="btn btn-outline-dark w-100">
+                      <i class="fas fa-edit"></i>
+                      Edit
+                    </button>
+                  </a>
+                  <form action="/deleteData/{{id}}" method="POST" class="w-100">
+                    <button type="submit" class="btn btn-outline-danger w-100">
+                      <i class="fas fa-trash-alt"></i>
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <!-- project content end -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    ></script>
+  </body>
+</html>
